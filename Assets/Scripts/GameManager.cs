@@ -9,4 +9,5 @@ public class GameManager : MonoBehaviour
 
     public Player player;
     public JoyStickManager joystickManager;
+    public TileMapManager tileMapManager;
 }

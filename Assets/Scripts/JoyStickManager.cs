@@ -27,7 +27,7 @@ public class JoyStickManager : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
 
     private void Start()
     {
-        OffAlpha();
+        //OffAlpha();
     }
 
     private void Update()
@@ -60,14 +60,14 @@ public class JoyStickManager : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        OnAlpha();
+       // OnAlpha();
         SetAxis(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         isDrag = false;
-        OffAlpha();
+       // OffAlpha();
         leverRect.anchoredPosition = Vector2.zero;
         axis = Vector2.zero;
     }

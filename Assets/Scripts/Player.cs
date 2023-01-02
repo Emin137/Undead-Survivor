@@ -14,16 +14,19 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rigid;
     private SpriteRenderer render; 
+    private Animator animator;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         render = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         GetAxis();
         SpriteFlip();
+        PlayerAnimation();
     }
 
     private void FixedUpdate()
@@ -32,7 +35,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private Vector2 axis;
+    public Vector2 axis;
     private void GetAxis()
     {
         if (GameManager.instance.joystickManager.isDrag)
@@ -50,6 +53,13 @@ public class Player : MonoBehaviour
     {
         moveDir = rigid.position + axis * playerData.speed * Time.fixedDeltaTime;
         rigid.MovePosition(moveDir);
+    }
+
+    private bool isMove;
+    private void PlayerAnimation()
+    {
+        isMove = axis.magnitude > 0 ? true : false;
+        animator.SetBool("isMove", isMove);
     }
 
     private void SpriteFlip()
