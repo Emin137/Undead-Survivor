@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    public GameObject[] prefabs;
-    public List<GameObject>[] pools;
+    public GameObject[] enemyPrefabs;
+    public List<GameObject>[] enemyPools;
     public Transform spawnTrans;
 
     private void Awake()
     {
-        pools = new List<GameObject>[prefabs.Length];
+        enemyPools = new List<GameObject>[enemyPrefabs.Length];
 
-        for (int i = 0; i < pools.Length; i++)
+        for (int i = 0; i < enemyPools.Length; i++)
         {
-            pools[i] = new List<GameObject>();
+            enemyPools[i] = new List<GameObject>();
         }
     }
 
-    public Enemy Pooling(int index)
+    public Enemy EnemyPooling(int index)
     {
         GameObject gameObject = null;
 
-        foreach (var item in pools[index])
+        foreach (var item in enemyPools[index])
         {
             if(!item.activeSelf)
             {
@@ -34,8 +34,8 @@ public class PoolManager : MonoBehaviour
 
         if(gameObject==null)
         {
-            gameObject = Instantiate(prefabs[index], spawnTrans);
-            pools[index].Add(gameObject);
+            gameObject = Instantiate(enemyPrefabs[index], spawnTrans);
+            enemyPools[index].Add(gameObject);
         }
 
         return gameObject.GetComponent<Enemy>();

@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigid;
     private SpriteRenderer render; 
     private Animator animator;
+
+    public SpriteRenderer weaponRender;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -69,6 +72,15 @@ public class Player : MonoBehaviour
         if(axis.x!=0)
         {
             render.flipX = axis.x < 0 ? true : false;
+            weaponRender.flipX = axis.x < 0 ? true : false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Damage");
         }
     }
 
