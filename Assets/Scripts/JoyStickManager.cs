@@ -27,7 +27,7 @@ public class JoyStickManager : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
 
     private void Start()
     {
-        //OffAlpha();
+        OffAlpha();
     }
 
     private void Update()
@@ -38,18 +38,17 @@ public class JoyStickManager : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
     private void MoveJoyStick()
     {
         Vector2 mousePos = Input.mousePosition;
-        Vector2 transPos = Camera.main.ScreenToWorldPoint(mousePos);
         if(!isDrag)
-            joystickRect.position = transPos;
+            joystickRect.position = mousePos;
     }
 
     private void SetAxis(PointerEventData eventData)
     {
-        Vector2 eventPos = eventData.position - joystickRect.anchoredPosition;
-        Vector2 limitPos = eventPos.magnitude < limitRange ? eventPos : eventPos.normalized * limitRange;
-        leverRect.anchoredPosition = limitPos;
-        axis = limitPos / limitRange;
-        axis = axis.normalized;
+        Vector2 eventPos = eventData.position;
+        Vector2 joystickPos = joystickRect.position;
+        Vector2 offset = eventPos - joystickPos;
+        axis = (eventPos - joystickPos).normalized;
+        leverRect.position = offset.magnitude < limitRange ? eventPos : joystickPos + axis * limitRange;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -60,14 +59,14 @@ public class JoyStickManager : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-       // OnAlpha();
+       OnAlpha();
         SetAxis(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         isDrag = false;
-       // OffAlpha();
+       OffAlpha();
         leverRect.anchoredPosition = Vector2.zero;
         axis = Vector2.zero;
     }
