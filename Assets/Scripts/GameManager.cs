@@ -9,5 +9,20 @@ public class GameManager : MonoBehaviour
 
     public Player player;
     public JoyStickManager joystickManager;
-    public TileMapManager tileMapManager;
+    public UiManager uiManager;
+
+    [System.Serializable]
+    public class StageData
+    {
+        public int stage=1;
+        public int enemyKill=0;
+        public float time=0;
+    }
+    public StageData stageData;
+
+    private void Update()
+    {
+        stageData.time += Time.deltaTime;
+        uiManager.SetTime((int)stageData.time);
+    }
 }
