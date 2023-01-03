@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public JoyStickManager joystickManager;
     public UiManager uiManager;
+    public PoolManager poolManager;
 
     [System.Serializable]
     public class StageData

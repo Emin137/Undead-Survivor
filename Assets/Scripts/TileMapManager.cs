@@ -16,16 +16,16 @@ public class TileMapManager : MonoBehaviour
         float offsetY = Mathf.Abs(playerPos.y - myPos.y);
 
         Vector2 axis = GameManager.instance.player.axis;
-        float axisX = axis.x > 0 ? 1 : -1;
-        float axisY = axis.y > 0 ? 1 : -1;
+        float axisX = axis.x < 0 ? -1 : 1;
+        float axisY = axis.y < 0 ? -1 : 1;
 
         if(offsetX>offsetY)
         {
-            transform.Translate(Vector2.right * axisX * 40);
+            transform.Translate(Vector2.right * axisX * 56);
         }
         else if(offsetY>offsetX)
         {
-            transform.Translate(Vector2.up * axisY * 40);
+            transform.Translate(Vector2.up * axisY * 56);
         }
     }
 }

@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     {
         public float hp;
         public float speed;
+        public int level;
+        public float exp;
     }
     public PlayerData playerData;
 
@@ -24,9 +26,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        GetAxis();
         SpriteFlip();
         PlayerAnimation();
+        GetAxis();
     }
 
     private void FixedUpdate()

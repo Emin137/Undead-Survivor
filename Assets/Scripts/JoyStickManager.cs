@@ -75,8 +75,8 @@ public class JoyStickManager : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
     {
         Color color = joystickImage.color;
         Color color2 = leverImage.color;
-        color.a = 1f;
-        color2.a = 1f;
+        color.a = 0.8f;
+        color2.a = 0.8f;
         joystickImage.color = color;
         leverImage.color = color2;
     }
