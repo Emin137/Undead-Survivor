@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
         public int level;
         public float exp;
         public float attackDamage;
+        public bool isDead = false;
     }
     public PlayerData playerData;
 
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
         set
         { 
             playerData.hp = value;
+            GameManager.instance.uiManager.SetHp(value);
         }
     }
 
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
     private Animator animator;
 
     public SpriteRenderer weaponRender;
+    public Transform bulletSpawnerTrans;
 
     private void Awake()
     {
@@ -39,6 +42,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (playerData.isDead)
+            return;
         SpriteFlip();
         PlayerAnimation();
         GetAxis();
@@ -46,6 +51,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (playerData.isDead)
+            return;
         PlayerMove();
     }
 
@@ -83,37 +90,61 @@ public class Player : MonoBehaviour
         {
             render.flipX = axis.x < 0 ? true : false;
             weaponRender.flipX = axis.x < 0 ? true : false;
+            bulletSpawnerTrans.position = axis.x < 0 ? new Vector2(-0.8f, 0.14f) : new Vector2(0.8f, 0.14f);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        OnDamage(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        OnDamage(collision);
+    }
+
+    private void OnDamage(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             if (isDamage)
                 return;
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            StartCoroutine(OnDamage(enemy.enemyData.attackDamage));
+            StartCoroutine(DamageCoroutine(enemy.enemyData.attackDamage));
         }
     }
 
     public bool isDamage=false;
-    IEnumerator OnDamage(float value)
+    IEnumerator DamageCoroutine(float value)
     {
         render.color = Color.red;
         HP -= value;
         isDamage=true;
-        yield return new WaitForSeconds(0.2f);
+
+        if(HP<=0)
+        {
+            render.color = new Color(1, 1, 1);
+            animator.SetTrigger("isDead");
+            weaponRender.gameObject.SetActive(false);
+            playerData.isDead = true;
+            rigid.bodyType = RigidbodyType2D.Static;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
         if(HP>0)
         {
             render.color = new Color(1, 1, 1);
             isDamage = false;
         }
-        else
-        {
-            // Dead
-        }
     }
+
+    private void OnAttack()
+    {
+
+    }
+
 
 
 }

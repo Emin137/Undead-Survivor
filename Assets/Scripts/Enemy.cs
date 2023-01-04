@@ -57,4 +57,5 @@ public class Enemy : MonoBehaviour
             render.flipX = axis.x < 0 ? true : false;
         }
     }
+
 }
