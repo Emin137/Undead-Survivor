@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     {
         public float hp;
         public float speed;
+        public float attackDamage;
     }
     public EnemyData enemyData;
 

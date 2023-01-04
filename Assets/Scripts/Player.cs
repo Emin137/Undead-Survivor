@@ -11,8 +11,18 @@ public class Player : MonoBehaviour
         public float speed;
         public int level;
         public float exp;
+        public float attackDamage;
     }
     public PlayerData playerData;
+
+    private float HP
+    {
+        get { return playerData.hp; }
+        set
+        { 
+            playerData.hp = value;
+        }
+    }
 
     private Rigidbody2D rigid;
     private SpriteRenderer render; 
@@ -80,7 +90,28 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Damage");
+            if (isDamage)
+                return;
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            StartCoroutine(OnDamage(enemy.enemyData.attackDamage));
+        }
+    }
+
+    public bool isDamage=false;
+    IEnumerator OnDamage(float value)
+    {
+        render.color = Color.red;
+        HP -= value;
+        isDamage=true;
+        yield return new WaitForSeconds(0.2f);
+        if(HP>0)
+        {
+            render.color = new Color(1, 1, 1);
+            isDamage = false;
+        }
+        else
+        {
+            // Dead
         }
     }
 

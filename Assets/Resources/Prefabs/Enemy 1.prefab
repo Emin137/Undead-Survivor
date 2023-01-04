@@ -159,6 +159,7 @@ MonoBehaviour:
   enemyData:
     hp: 0
     speed: 3
+    attackDamage: 2
   axis: {x: 0, y: 0}
 --- !u!1 &6714222225915909274
 GameObject:
