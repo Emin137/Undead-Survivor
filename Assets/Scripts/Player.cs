@@ -89,7 +89,6 @@ public class Player : MonoBehaviour
         if(axis.x!=0)
         {
             render.flipX = axis.x < 0 ? true : false;
-            //weaponRender.flipX = axis.x < 0 ? true : false;
             bulletSpawnerTrans.position = axis.x < 0 ? new Vector2(-0.8f, 0.14f) : new Vector2(0.8f, 0.14f);
         }
     }
