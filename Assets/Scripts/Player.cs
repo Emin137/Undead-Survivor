@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
         if(axis.x!=0)
         {
             render.flipX = axis.x < 0 ? true : false;
-            weaponRender.flipX = axis.x < 0 ? true : false;
+            //weaponRender.flipX = axis.x < 0 ? true : false;
             bulletSpawnerTrans.position = axis.x < 0 ? new Vector2(-0.8f, 0.14f) : new Vector2(0.8f, 0.14f);
         }
     }
@@ -139,8 +139,39 @@ public class Player : MonoBehaviour
             isDamage = false;
         }
     }
-
+    public List<Enemy> enemies = new List<Enemy>();
+    public Transform target;
     private void OnAttack()
+    {
+        Vector2 targetPos;
+        float minDistance = float.MaxValue;
+        float offset;
+        if (target)
+        {
+
+        }
+        else
+        {
+            for (int i = 0; i < GameManager.instance.poolManager.enemyPools.Length; i++)
+            {
+                for (int j = 0; j < GameManager.instance.poolManager.enemyPools[i].Count; j++)
+                {
+                    Enemy enemy = GameManager.instance.poolManager.enemyPools[i][j].GetComponent<Enemy>();
+                    targetPos = enemy.transform.position;
+                    Vector2 playerPos = transform.position;
+                    offset = (playerPos - targetPos).magnitude;
+                    if (offset < minDistance)
+                    {
+                        minDistance = offset;
+                        target = enemy.transform;
+                    }
+
+                }
+            }
+        }
+    }
+
+    private void FindEnemy()
     {
 
     }
