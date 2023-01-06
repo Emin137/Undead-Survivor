@@ -5,24 +5,17 @@ using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
-    public List<GameObject>[] enemyPools;
-    public Transform spawnTrans;
-
-    private void Awake()
-    {
-        enemyPools = new List<GameObject>[enemyPrefabs.Length];
-
-        for (int i = 0; i < enemyPools.Length; i++)
-        {
-            enemyPools[i] = new List<GameObject>();
-        }
-    }
+    public List<GameObject> enemyPools = new List<GameObject>();
+    public GameObject[] bulletPrefabs;
+    public List<GameObject> bulletPools = new List<GameObject>();
+    public Transform enemySpawnTrans;
+    public Transform bulletSpawnTrans;
 
     public Enemy EnemyPooling(int index)
     {
         GameObject gameObject = null;
 
-        foreach (var item in enemyPools[index])
+        foreach (var item in enemyPools)
         {
             if(!item.activeSelf)
             {
@@ -34,10 +27,33 @@ public class PoolManager : MonoBehaviour
 
         if(gameObject==null)
         {
-            gameObject = Instantiate(enemyPrefabs[index], spawnTrans);
-            enemyPools[index].Add(gameObject);
+            gameObject = Instantiate(enemyPrefabs[index], enemySpawnTrans);
+            enemyPools.Add(gameObject);
         }
 
         return gameObject.GetComponent<Enemy>();
+    }
+
+    public Bullet BulletPooling(int index)
+    {
+        GameObject gameObject = null;
+
+        foreach (var item in bulletPools)
+        {
+            if (!item.activeSelf)
+            {
+                gameObject = item;
+                gameObject.SetActive(true);
+                break;
+            }
+        }
+
+        if (gameObject == null)
+        {
+            gameObject = Instantiate(bulletPrefabs[index], bulletSpawnTrans);
+            bulletPools.Add(gameObject);
+        }
+
+        return gameObject.GetComponent<Bullet>();
     }
 }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public UiManager uiManager;
     public PoolManager poolManager;
     public SpawnManager spawnManager;
+    public Weapon weapon;
 
     [System.Serializable]
     public class StageData

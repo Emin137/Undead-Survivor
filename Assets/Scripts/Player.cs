@@ -47,6 +47,12 @@ public class Player : MonoBehaviour
         SpriteFlip();
         PlayerAnimation();
         GetAxis();
+        FindEnemy();
+        if(!isFire)
+        {
+            StartCoroutine(Fire());
+            isFire = true;
+        }
     }
 
     private void FixedUpdate()
@@ -138,43 +144,38 @@ public class Player : MonoBehaviour
             isDamage = false;
         }
     }
+
     public List<Enemy> enemies = new List<Enemy>();
-    public Transform target;
-    private void OnAttack()
-    {
-        Vector2 targetPos;
-        float minDistance = float.MaxValue;
-        float offset;
-        if (target)
-        {
-
-        }
-        else
-        {
-            for (int i = 0; i < GameManager.instance.poolManager.enemyPools.Length; i++)
-            {
-                for (int j = 0; j < GameManager.instance.poolManager.enemyPools[i].Count; j++)
-                {
-                    Enemy enemy = GameManager.instance.poolManager.enemyPools[i][j].GetComponent<Enemy>();
-                    targetPos = enemy.transform.position;
-                    Vector2 playerPos = transform.position;
-                    offset = (playerPos - targetPos).magnitude;
-                    if (offset < minDistance)
-                    {
-                        minDistance = offset;
-                        target = enemy.transform;
-                    }
-
-                }
-            }
-        }
-    }
-
+    public Transform target = null;
     private void FindEnemy()
     {
-
+        float min = float.MaxValue;
+        foreach (var item in GameManager.instance.poolManager.enemyPools)
+        {
+            float mOffset = (item.transform.position - transform.position).magnitude;
+            if(mOffset<min && mOffset<5)
+            {
+                min = mOffset;
+                target = item.transform;
+                GameManager.instance.weapon.target = target;
+            }
+        }
+        if(target)
+        {
+            BulletCreat();
+        }
     }
 
+    private void BulletCreat()
+    {
+        Bullet bullet =  GameManager.instance.poolManager.BulletPooling(0);
+    }
 
-
+    bool isFire;
+    IEnumerator Fire()
+    {
+        yield return new WaitForSeconds(1f);
+        FindEnemy();
+        isFire = false;
+    }
 }

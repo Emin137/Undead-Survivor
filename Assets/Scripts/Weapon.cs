@@ -15,6 +15,8 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        if (!target)
+            return;
         Vector2 myPos = transform.position;
         Vector2 targetPos = target.position;
         Vector2 offset = targetPos - myPos;
