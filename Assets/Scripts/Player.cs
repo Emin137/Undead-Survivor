@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
         public int level;
         public float exp;
         public float attackDamage;
+        public float attackRange;
+        public float attackSpeed;
         public bool isDead = false;
     }
     public PlayerData playerData;
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private float timer;
     private void Update()
     {
         if (playerData.isDead)
@@ -47,11 +50,12 @@ public class Player : MonoBehaviour
         SpriteFlip();
         PlayerAnimation();
         GetAxis();
-        FindEnemy();
-        if(!isFire)
+        FindTarget();
+        timer += Time.deltaTime;
+        if (timer > playerData.attackSpeed && target)
         {
-            StartCoroutine(Fire());
-            isFire = true;
+            Fire();
+            timer = 0f;
         }
     }
 
@@ -95,7 +99,6 @@ public class Player : MonoBehaviour
         if(axis.x!=0)
         {
             render.flipX = axis.x < 0 ? true : false;
-            bulletSpawnerTrans.position = axis.x < 0 ? new Vector2(-0.8f, 0.14f) : new Vector2(0.8f, 0.14f);
         }
     }
 
@@ -146,36 +149,27 @@ public class Player : MonoBehaviour
     }
 
     public List<Enemy> enemies = new List<Enemy>();
-    public Transform target = null;
-    private void FindEnemy()
+    public Transform target;
+    private void FindTarget()
     {
+        target = null;
         float min = float.MaxValue;
         foreach (var item in GameManager.instance.poolManager.enemyPools)
         {
             float mOffset = (item.transform.position - transform.position).magnitude;
-            if(mOffset<min && mOffset<5)
+            if(mOffset<min && mOffset<playerData.attackRange)
             {
                 min = mOffset;
                 target = item.transform;
                 GameManager.instance.weapon.target = target;
             }
         }
-        if(target)
-        {
-            BulletCreat();
-        }
     }
 
-    private void BulletCreat()
+    private void Fire()
     {
         Bullet bullet =  GameManager.instance.poolManager.BulletPooling(0);
-    }
-
-    bool isFire;
-    IEnumerator Fire()
-    {
-        yield return new WaitForSeconds(1f);
-        FindEnemy();
-        isFire = false;
+        bullet.transform.position = transform.position;
+        bullet.SetForce((target.position - transform.position).normalized);
     }
 }

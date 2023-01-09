@@ -5,24 +5,32 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float rotateSpeed;
-    public Transform target;
     public SpriteRenderer render;
+    public Transform target;
 
     private void Awake()
     {
         render = GetComponent<SpriteRenderer>();
     }
 
+    public float angle;
     private void Update()
     {
+        target = GameManager.instance.player.target;
         if (!target)
+        {
+            transform.rotation = Quaternion.identity;
+            render.flipX = GameManager.instance.player.axis.x < 0 ? true : false;
+            render.flipY = false;
             return;
-        Vector2 myPos = transform.position;
+        }
+        render.flipX = false;
         Vector2 targetPos = target.position;
+        Vector2 myPos = transform.position;
         Vector2 offset = targetPos - myPos;
 
-        float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle-90f,Vector3.back);
+        angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
         render.flipY = offset.x < 0 ? true : false;
     }
 }

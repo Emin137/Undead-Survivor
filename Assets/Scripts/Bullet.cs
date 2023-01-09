@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class BulletData
     {
-        
+        public float speed=50f;
+        public float attackDamage;
+    }
+    public BulletData bulletData;
+
+    public Rigidbody2D rigid;
+
+    public Vector2 direction;
+    private void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if ((transform.position - GameManager.instance.player.transform.position).magnitude > 50)
+            gameObject.SetActive(false);
+    }
+
+    public void SetForce(Vector2 direction)
+    {
+        rigid.AddForce(direction*bulletData.speed, ForceMode2D.Impulse);
     }
 }
