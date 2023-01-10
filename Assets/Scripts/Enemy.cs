@@ -8,12 +8,25 @@ public class Enemy : MonoBehaviour
     [System.Serializable]
     public class EnemyData
     {
+        public float maxHp;
         public float hp;
         public float speed;
         public float attackDamage;
+        public bool isDead;
     }
     public EnemyData enemyData;
 
+    public float HP
+    {
+        get { return enemyData.hp; }
+
+        set
+        {
+            enemyData.hp = value;
+
+        }
+
+    }
     private Rigidbody2D rigid;
     private SpriteRenderer render;
     private Animator animator;
@@ -58,11 +71,46 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public bool isHit;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Bullet"))
+        OnDamage(collision);
+    }
+
+    private void OnDamage(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             collision.gameObject.SetActive(false);
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            StartCoroutine(DamageCoroutine(bullet.bulletData.attackDamage));
+        }
+    }
+
+    public bool isDamage = false;
+    IEnumerator DamageCoroutine(float value)
+    {
+        HP -= value;
+        isDamage = true;
+        animator.SetBool("isHit", isDamage);
+
+        if(HP<=0)
+        {
+            enemyData.isDead = true;
+            animator.SetTrigger("isDead");
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (HP > 0)
+        {
+            isDamage = false;
+            animator.SetBool("isHit", isDamage);
+        }
+        else
+        {
+            isDamage = false;
+            gameObject.SetActive(false);
         }
     }
 

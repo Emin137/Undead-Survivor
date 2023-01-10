@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 6714222223846359335}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: cef12343c2c0cf449b93f28491fb8683, type: 2}
+  m_Controller: {fileID: 22100000, guid: 6bcefa1c6b2b15a468e30bf4b0b6687f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -157,10 +157,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   enemyData:
-    hp: 0
+    maxHp: 4
+    hp: 4
     speed: 3
     attackDamage: 2
   axis: {x: 0, y: 0}
+  isHit: 0
+  isDamage: 0
 --- !u!1 &6714222225915909274
 GameObject:
   m_ObjectHideFlags: 0

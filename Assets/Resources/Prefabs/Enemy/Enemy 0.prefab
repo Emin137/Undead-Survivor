@@ -157,10 +157,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   enemyData:
-    hp: 0
+    maxHp: 2
+    hp: 2
     speed: 3
     attackDamage: 1
   axis: {x: 0, y: 0}
+  isHit: 0
+  isDamage: 0
 --- !u!1 &6714222225915909274
 GameObject:
   m_ObjectHideFlags: 0

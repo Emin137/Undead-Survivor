@@ -20,6 +20,8 @@ public class SpawnManager : MonoBehaviour
         Enemy spawnEnemy = GameManager.instance.poolManager.EnemyPooling(Random.Range(0,2));
         spawnEnemy.transform.position = spawnPoints[Random.Range(0, 8)].position;
         spawnEnemy.target = GameManager.instance.player.transform;
+        spawnEnemy.enemyData.hp = spawnEnemy.enemyData.maxHp;
+        spawnEnemy.enemyData.isDead = false;
         yield return new WaitForSeconds(2f);
         enemySpawn = false;
     }

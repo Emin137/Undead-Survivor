@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
 
     public List<Enemy> enemies = new List<Enemy>();
     public Transform target;
-    private void FindTarget()
+    public void FindTarget()
     {
         target = null;
         float min = float.MaxValue;
@@ -159,9 +159,12 @@ public class Player : MonoBehaviour
             float mOffset = (item.transform.position - transform.position).magnitude;
             if(mOffset<min && mOffset<playerData.attackRange)
             {
-                min = mOffset;
-                target = item.transform;
-                GameManager.instance.weapon.target = target;
+                if (!item.GetComponent<Enemy>().enemyData.isDead)
+                {
+                    min = mOffset;
+                    target = item.transform;
+                    GameManager.instance.weapon.target = target;
+                }
             }
         }
     }
