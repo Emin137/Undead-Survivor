@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(!enemyData.isDead)
         EnemyMove();
     }
 
@@ -94,20 +95,22 @@ public class Enemy : MonoBehaviour
         isDamage = true;
         animator.SetBool("isHit", isDamage);
 
-        if(HP<=0)
+        if (HP <= 0)
         {
-            enemyData.isDead = true;
             animator.SetTrigger("isDead");
+            enemyData.isDead = true;
+            GameManager.instance.KillCount++;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         if (HP > 0)
         {
             isDamage = false;
             animator.SetBool("isHit", isDamage);
         }
-        else
+
+        if (HP <= 0)
         {
             isDamage = false;
             gameObject.SetActive(false);

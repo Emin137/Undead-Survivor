@@ -21,11 +21,11 @@ public class TileMapManager : MonoBehaviour
 
         if(offsetX>offsetY)
         {
-            transform.Translate(Vector2.right * axisX * 56);
+            transform.Translate(Vector2.right * axisX * 68);
         }
         else if(offsetY>offsetX)
         {
-            transform.Translate(Vector2.up * axisY * 56);
+            transform.Translate(Vector2.up * axisY * 68);
         }
     }
 }

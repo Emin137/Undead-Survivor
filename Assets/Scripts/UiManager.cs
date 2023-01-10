@@ -7,6 +7,7 @@ public class UiManager : MonoBehaviour
 {
     public Text time;
     public Slider hpSlider;
+    public Text killCount;
 
     private void Start()
     {
@@ -33,5 +34,11 @@ public class UiManager : MonoBehaviour
     public void SetHp(float value)
     {
         hpSlider.value = value;
+    }
+
+    public void SetKillText(int value)
+    {
+        string text = string.Format("{0:000}", value);
+        killCount.text = text;
     }
 }

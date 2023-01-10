@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
         spawnEnemy.target = GameManager.instance.player.transform;
         spawnEnemy.enemyData.hp = spawnEnemy.enemyData.maxHp;
         spawnEnemy.enemyData.isDead = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         enemySpawn = false;
     }
 

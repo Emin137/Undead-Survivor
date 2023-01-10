@@ -23,6 +23,16 @@ public class GameManager : MonoBehaviour
     }
     public StageData stageData;
 
+    public int KillCount
+    {
+        get { return stageData.enemyKill; }
+
+        set
+        {
+            stageData.enemyKill = value;
+            uiManager.SetKillText(value);
+        }
+    }
     private void Update()
     {
         stageData.time += Time.deltaTime;
