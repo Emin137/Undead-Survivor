@@ -8,7 +8,8 @@ public class Item : MonoBehaviour
     {
         Exp,
         Heal,
-        Magnet
+        Magnet,
+        Box
     }
 
     [System.Serializable]
@@ -19,4 +20,15 @@ public class Item : MonoBehaviour
     }
 
     public ItemData itemData;
+    public bool isMagnet;
+    private void Update()
+    {
+        if(isMagnet)
+        {
+            Vector2 offset = GameManager.instance.player.transform.position- transform.position;
+            transform.Translate(offset * 10 * Time.deltaTime);
+        }    
+    }
+
+    
 }

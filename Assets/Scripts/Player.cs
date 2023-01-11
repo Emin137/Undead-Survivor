@@ -129,6 +129,7 @@ public class Player : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             Item item = collision.gameObject.GetComponent<Item>();
+            item.isMagnet = false;
             switch (item.itemData.Type)
             {
                 case Item.ItemType.Exp:
@@ -137,10 +138,24 @@ public class Player : MonoBehaviour
                 case Item.ItemType.Heal:
                     break;
                 case Item.ItemType.Magnet:
+                    Magnet();
                     break;
                 default:
                     break;
             }
+        }
+    }
+
+    private void Magnet()
+    {
+        foreach (var item in GameManager.instance.poolManager.itemPools)
+        {
+            Item item1 = item.GetComponent<Item>();
+            if(item1.itemData.Type != Item.ItemType.Magnet)
+            {
+                item1.isMagnet = true;
+            }
+
         }
     }
 

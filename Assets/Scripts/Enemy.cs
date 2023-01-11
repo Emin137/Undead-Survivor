@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
                 return;
             collision.gameObject.SetActive(false);
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            StartCoroutine(DamageCoroutine(bullet.bulletData.attackDamage));
+            StartCoroutine(DamageCoroutine(GameManager.instance.player.playerData.attackDamage));
         }
     }
 
@@ -96,7 +96,9 @@ public class Enemy : MonoBehaviour
         HP -= value;
         isDamage = true;
         animator.SetBool("isHit", isDamage);
-
+        Damage damage = GameManager.instance.poolManager.DamagePooling();
+        damage.transform.position = Camera.main.WorldToScreenPoint(transform.position+ new Vector3(0,0.2f,0));
+        damage.SetDamage(value);
         if (HP <= 0)
         {
             animator.SetTrigger("isDead");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PoolManager : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class PoolManager : MonoBehaviour
     public GameObject[] itemPrefabs;
     public List<GameObject> itemPools = new List<GameObject>();
 
+    public GameObject damagePrefabs;
+    public List<GameObject> damagePools = new List<GameObject>();
+
     public Transform enemySpawnTrans;
     public Transform bulletSpawnTrans;
     public Transform itemSpawnTrans;
+    public RectTransform damageTrans;
 
 
     public Enemy EnemyPooling(int index)
@@ -85,5 +90,28 @@ public class PoolManager : MonoBehaviour
         }
 
         return gameObject.GetComponent<Item>();
+    }
+
+    public Damage DamagePooling()
+    {
+        GameObject gameObject = null;
+
+        foreach (var item in damagePools)
+        {
+            if (!item.activeSelf)
+            {
+                gameObject = item;
+                gameObject.SetActive(true);
+                break;
+            }
+        }
+
+        if (gameObject == null)
+        {
+            gameObject = Instantiate(damagePrefabs, damageTrans);
+            damagePools.Add(gameObject);
+        }
+
+        return gameObject.GetComponent<Damage>();
     }
 }
