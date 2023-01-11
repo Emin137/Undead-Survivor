@@ -10,8 +10,8 @@ public class Damage : MonoBehaviour
 
     private void Awake()
     {
-        text = GetComponent<Text>();
-        animator = GetComponent<Animator>();
+        text = GetComponentInChildren<Text>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void SetDamage(float value)

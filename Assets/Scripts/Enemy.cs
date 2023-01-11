@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
         isDamage = true;
         animator.SetBool("isHit", isDamage);
         Damage damage = GameManager.instance.poolManager.DamagePooling();
-        damage.transform.position = Camera.main.WorldToScreenPoint(transform.position+ new Vector3(0,0.2f,0));
+        damage.transform.position = (transform.position+ new Vector3(0,0.5f,0));
         damage.SetDamage(value);
         if (HP <= 0)
         {

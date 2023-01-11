@@ -20,7 +20,7 @@ public class PoolManager : MonoBehaviour
     public Transform enemySpawnTrans;
     public Transform bulletSpawnTrans;
     public Transform itemSpawnTrans;
-    public RectTransform damageTrans;
+    public Transform damageTrans;
 
 
     public Enemy EnemyPooling(int index)
