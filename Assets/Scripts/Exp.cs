@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Exp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class ExpData
     {
-        
+        public float exp;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public ExpData expData;
 }

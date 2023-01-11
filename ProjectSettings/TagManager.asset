@@ -9,14 +9,15 @@ TagManager:
   - Enemy
   - AttackArea
   - Bullet
+  - Item
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Item
   - 
   - 
   - 

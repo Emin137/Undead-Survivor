@@ -82,6 +82,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            if (enemyData.isDead)
+                return;
             collision.gameObject.SetActive(false);
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             StartCoroutine(DamageCoroutine(bullet.bulletData.attackDamage));
@@ -100,6 +102,10 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("isDead");
             enemyData.isDead = true;
             GameManager.instance.KillCount++;
+            float rand;
+            rand = Random.Range(0, 2);
+            if(rand==0)
+                GameManager.instance.poolManager.ItemPooling(0).transform.position = transform.position;
         }
 
         yield return new WaitForSeconds(0.2f);
@@ -116,5 +122,7 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    
 
 }

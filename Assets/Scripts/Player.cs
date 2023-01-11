@@ -18,13 +18,23 @@ public class Player : MonoBehaviour
     }
     public PlayerData playerData;
 
-    private float HP
+    public float HP
     {
         get { return playerData.hp; }
         set
         { 
             playerData.hp = value;
             GameManager.instance.uiManager.SetHp(value);
+        }
+    }
+
+    public float EXP
+    {
+        get { return playerData.exp; }
+        set
+        {
+            playerData.exp = value;
+            GameManager.instance.uiManager.SetExp(value);
         }
     }
 
@@ -105,11 +115,33 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnDamage(collision);
+        OnItem(collision);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         OnDamage(collision);
+    }
+
+    private void OnItem(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            collision.gameObject.SetActive(false);
+            Item item = collision.gameObject.GetComponent<Item>();
+            switch (item.itemData.Type)
+            {
+                case Item.ItemType.Exp:
+                    EXP += item.itemData.value;
+                    break;
+                case Item.ItemType.Heal:
+                    break;
+                case Item.ItemType.Magnet:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private void OnDamage(Collision2D collision)
@@ -175,4 +207,6 @@ public class Player : MonoBehaviour
         bullet.transform.position = transform.position;
         bullet.SetForce((target.position - transform.position).normalized);
     }
+
+   
 }

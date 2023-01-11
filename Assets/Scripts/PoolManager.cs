@@ -6,10 +6,17 @@ public class PoolManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     public List<GameObject> enemyPools = new List<GameObject>();
+
     public GameObject[] bulletPrefabs;
     public List<GameObject> bulletPools = new List<GameObject>();
+
+    public GameObject[] itemPrefabs;
+    public List<GameObject> itemPools = new List<GameObject>();
+
     public Transform enemySpawnTrans;
     public Transform bulletSpawnTrans;
+    public Transform itemSpawnTrans;
+
 
     public Enemy EnemyPooling(int index)
     {
@@ -55,5 +62,28 @@ public class PoolManager : MonoBehaviour
         }
 
         return gameObject.GetComponent<Bullet>();
+    }
+
+    public Item ItemPooling(int index)
+    {
+        GameObject gameObject = null;
+
+        foreach (var item in itemPools)
+        {
+            if (!item.activeSelf)
+            {
+                gameObject = item;
+                gameObject.SetActive(true);
+                break;
+            }
+        }
+
+        if (gameObject == null)
+        {
+            gameObject = Instantiate(itemPrefabs[index], itemSpawnTrans);
+            itemPools.Add(gameObject);
+        }
+
+        return gameObject.GetComponent<Item>();
     }
 }

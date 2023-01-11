@@ -7,22 +7,13 @@ public class UiManager : MonoBehaviour
 {
     public Text time;
     public Slider hpSlider;
+    public Slider expSlider;
     public Text killCount;
 
     private void Start()
     {
         hpSlider.maxValue = GameManager.instance.player.playerData.hp;
         hpSlider.value = hpSlider.maxValue;
-    }
-
-    private void FixedUpdate()
-    {
-        HpMove();
-    }
-
-    private void HpMove()
-    {
-        hpSlider.transform.position = Camera.main.WorldToScreenPoint(GameManager.instance.player.transform.position) + new Vector3(0,25f,0);
     }
 
     public void SetTime(int value)
@@ -34,6 +25,11 @@ public class UiManager : MonoBehaviour
     public void SetHp(float value)
     {
         hpSlider.value = value;
+    }
+
+    public void SetExp(float value)
+    {
+        expSlider.value = value;
     }
 
     public void SetKillText(int value)
