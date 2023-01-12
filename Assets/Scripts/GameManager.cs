@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (player.playerData.isDead)
+            return;
         stageData.time += Time.deltaTime;
         uiManager.SetTime((int)stageData.time);
     }

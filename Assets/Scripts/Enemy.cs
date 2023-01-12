@@ -86,7 +86,8 @@ public class Enemy : MonoBehaviour
                 return;
             collision.gameObject.SetActive(false);
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            StartCoroutine(DamageCoroutine(GameManager.instance.player.playerData.attackDamage));
+            float attackDamage = GameManager.instance.player.playerData.attackDamage;
+            StartCoroutine(DamageCoroutine(Random.Range(attackDamage-2,attackDamage+2)));
         }
     }
 

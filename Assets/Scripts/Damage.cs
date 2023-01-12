@@ -18,7 +18,7 @@ public class Damage : MonoBehaviour
     {
         text.color = Color.white;
         transform.position = pos;
-        text.text = value.ToString();
+        text.text = value.ToString("F0");
         Invoke("SetActive", 0.8f);
         animator.Play("Floating");
     }

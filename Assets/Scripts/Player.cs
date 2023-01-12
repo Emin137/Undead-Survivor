@@ -50,8 +50,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer render; 
     private Animator animator;
 
+    public Animator effectAnimator;
     public SpriteRenderer weaponRender;
-    public Transform bulletSpawnerTrans;
+    public Transform bulletSpawnTrans;
 
     private void Awake()
     {
@@ -228,8 +229,9 @@ public class Player : MonoBehaviour
     private void Fire()
     {
         Bullet bullet =  GameManager.instance.poolManager.BulletPooling(0);
-        bullet.transform.position = transform.position;
+        bullet.transform.position = bulletSpawnTrans.position;
         bullet.SetForce((target.position - transform.position).normalized);
+        effectAnimator.Play("FireEffect");
     }
 
    
