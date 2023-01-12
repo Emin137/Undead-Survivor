@@ -14,9 +14,25 @@ public class Damage : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void SetDamage(float value)
+    public void SetDamage(float value,Vector2 pos)
     {
+        text.color = Color.white;
+        transform.position = pos;
         text.text = value.ToString();
+        Invoke("SetActive", 0.8f);
+        animator.Play("Floating");
+    }
+
+    public void SetHp(float value, Vector2 pos)
+    {
+        text.color = Color.red;
+        transform.position = pos;
+        string str;
+        if (value > 0)
+            str = $"+{value}";
+        else
+            str = value.ToString();
+        text.text = str;
         Invoke("SetActive", 0.8f);
         animator.Play("Floating");
     }

@@ -22,7 +22,7 @@ public class UiManager : MonoBehaviour
         time.text = timer;
     }
 
-    public void SetHp(float value)
+    public void SetHP(float value)
     {
         hpSlider.value = value;
     }

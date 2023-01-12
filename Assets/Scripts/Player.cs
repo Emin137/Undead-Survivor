@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [System.Serializable]
     public class PlayerData
     {
+        public float maxHp;
         public float hp;
         public float speed;
         public int level;
@@ -23,8 +24,15 @@ public class Player : MonoBehaviour
         get { return playerData.hp; }
         set
         { 
+            if(value>0)
+            {
+                Damage damage =  GameManager.instance.poolManager.DamagePooling();
+                damage.SetHp(value-playerData.hp,transform.position+new Vector3(0,0.5f,0));
+            }
+            if(value>playerData.maxHp)
+                value=playerData.maxHp;
             playerData.hp = value;
-            GameManager.instance.uiManager.SetHp(value);
+            GameManager.instance.uiManager.SetHP(value);
         }
     }
 
@@ -136,6 +144,7 @@ public class Player : MonoBehaviour
                     EXP += item.itemData.value;
                     break;
                 case Item.ItemType.Heal:
+                    HP += item.itemData.value;
                     break;
                 case Item.ItemType.Magnet:
                     Magnet();

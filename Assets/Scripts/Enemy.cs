@@ -97,8 +97,7 @@ public class Enemy : MonoBehaviour
         isDamage = true;
         animator.SetBool("isHit", isDamage);
         Damage damage = GameManager.instance.poolManager.DamagePooling();
-        damage.transform.position = (transform.position+ new Vector3(0,0.5f,0));
-        damage.SetDamage(value);
+        damage.SetDamage(value, transform.position + new Vector3(0, 0.5f, 0));
         if (HP <= 0)
         {
             animator.SetTrigger("isDead");
