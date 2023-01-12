@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
         public float hp;
         public float speed;
         public int level;
+        public float maxExp;
         public float exp;
         public float attackDamage;
         public float attackRange;
@@ -24,13 +25,24 @@ public class Player : MonoBehaviour
         get { return playerData.hp; }
         set
         { 
-            if(value>0)
+            if(value>0) // 데미지를 입을때
             {
                 Damage damage =  GameManager.instance.poolManager.DamagePooling();
-                damage.SetHp(value-playerData.hp,transform.position+new Vector3(0,0.5f,0));
+                damage.InitHp(value-playerData.hp,transform.position+new Vector3(0,0.5f,0));
             }
-            if(value>playerData.maxHp)
+            else // 플레이어 사망시
+            {
+                animator.SetTrigger("isDead");
+                weaponRender.gameObject.SetActive(false);
+                playerData.isDead = true;
+                rigid.bodyType = RigidbodyType2D.Static;
+                GameManager.instance.uiManager.imageDead.gameObject.SetActive(true);
+                Time.timeScale = 0f;
+                Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            }
+            if(value>playerData.maxHp) // 최대체력을 넘었을때 제한
                 value=playerData.maxHp;
+
             playerData.hp = value;
             GameManager.instance.uiManager.SetHP(value);
         }
@@ -43,6 +55,14 @@ public class Player : MonoBehaviour
         {
             playerData.exp = value;
             GameManager.instance.uiManager.SetExp(value);
+
+            if(value>=playerData.maxExp) // 레벨업
+            {
+                playerData.level++;
+                playerData.exp -= playerData.maxExp;
+                playerData.maxExp *= 1.5f;
+                GameManager.instance.uiManager.SetLevel(playerData.exp,playerData.maxExp,playerData.level);
+            }
         }
     }
 
@@ -123,16 +143,16 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        OnDamage(collision);
-        OnItem(collision);
+        CollisionEnemy(collision);
+        CollisionItem(collision);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        OnDamage(collision);
+        CollisionEnemy(collision);
     }
 
-    private void OnItem(Collision2D collision)
+    private void CollisionItem(Collision2D collision) // 아이템 충돌시
     {
         if (collision.gameObject.CompareTag("Item"))
         {
@@ -148,7 +168,7 @@ public class Player : MonoBehaviour
                     HP += item.itemData.value;
                     break;
                 case Item.ItemType.Magnet:
-                    Magnet();
+                    TriggerMagnet();
                     break;
                 default:
                     break;
@@ -156,7 +176,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Magnet()
+    private void TriggerMagnet()
     {
         foreach (var item in GameManager.instance.poolManager.itemPools)
         {
@@ -169,7 +189,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnDamage(Collision2D collision)
+    private void CollisionEnemy(Collision2D collision) // 적 충돌시
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -185,24 +205,12 @@ public class Player : MonoBehaviour
     {
         render.color = Color.red;
         HP -= value;
-        isDamage=true;
-
-        if(HP<=0)
-        {
-            render.color = new Color(1, 1, 1);
-            animator.SetTrigger("isDead");
-            weaponRender.gameObject.SetActive(false);
-            playerData.isDead = true;
-            rigid.bodyType = RigidbodyType2D.Static;
-        }
+        isDamage = true;
 
         yield return new WaitForSeconds(0.5f);
 
-        if(HP>0)
-        {
-            render.color = new Color(1, 1, 1);
-            isDamage = false;
-        }
+        render.color = new Color(1, 1, 1);
+        isDamage = false;
     }
 
     public List<Enemy> enemies = new List<Enemy>();

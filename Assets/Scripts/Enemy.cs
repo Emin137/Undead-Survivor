@@ -23,7 +23,15 @@ public class Enemy : MonoBehaviour
         set
         {
             enemyData.hp = value;
-
+            if(value<=0) // Enemy Dead
+            {
+                animator.SetTrigger("isDead");
+                enemyData.isDead = true;
+                GameManager.instance.KillCount++;
+                float rand = Random.Range(0, 2); //50%
+                if (rand == 0)
+                    GameManager.instance.poolManager.ItemPooling(0).transform.position = transform.position;
+            }
         }
 
     }
@@ -98,18 +106,8 @@ public class Enemy : MonoBehaviour
         isDamage = true;
         animator.SetBool("isHit", isDamage);
         Damage damage = GameManager.instance.poolManager.DamagePooling();
-        damage.SetDamage(value, transform.position + new Vector3(0, 0.5f, 0));
-        if (HP <= 0)
-        {
-            animator.SetTrigger("isDead");
-            enemyData.isDead = true;
-            GameManager.instance.KillCount++;
-            float rand;
-            rand = Random.Range(0, 2);
-            if(rand==0)
-                GameManager.instance.poolManager.ItemPooling(0).transform.position = transform.position;
-        }
-
+        damage.InitDamage(value, transform.position + new Vector3(0, 0.5f, 0));
+        
         yield return new WaitForSeconds(0.2f);
 
         if (HP > 0)

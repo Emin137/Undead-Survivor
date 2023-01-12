@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
         {
             stageData.enemyKill = value;
             uiManager.SetKillText(value);
+
+            if(value%10==0) // 10마리 처치시마다 아이템소환
+            {
+                spawnManager.ItemSpawn();
+            }
         }
     }
     private void Update()

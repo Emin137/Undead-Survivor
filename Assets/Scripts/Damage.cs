@@ -15,16 +15,20 @@ public class Damage : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void SetDamage(float value,Vector2 pos)
+    public void InitDamage(float value,Vector2 pos)
     {
+        text.color = Color.white;
+        text.fontSize = 30f;
         transform.position = pos;
         text.text = value.ToString("F0");
         Invoke("SetActive", 0.8f);
         animator.Play("Floating");
     }
 
-    public void SetHp(float value, Vector2 pos)
+    public void InitHp(float value, Vector2 pos)
     {
+        text.color = Color.red;
+        text.fontSize = 40f;
         transform.position = pos;
         string str;
         if (value > 0)

@@ -9,6 +9,8 @@ public class UiManager : MonoBehaviour
     public Slider hpSlider;
     public Slider expSlider;
     public Text killCount;
+    public Text level;
+    public Image imageDead;
 
     private void Start()
     {
@@ -30,6 +32,13 @@ public class UiManager : MonoBehaviour
     public void SetExp(float value)
     {
         expSlider.value = value;
+    }
+
+    public void SetLevel(float exp,float maxExp,int level)
+    {
+        this.level.text = $"Lv.{level}";
+        expSlider.value = exp;
+        expSlider.maxValue = maxExp;
     }
 
     public void SetKillText(int value)

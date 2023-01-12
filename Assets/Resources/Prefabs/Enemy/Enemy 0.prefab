@@ -157,9 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   enemyData:
-    maxHp: 20
-    hp: 20
-    speed: 3
+    maxHp: 10
+    hp: 10
+    speed: 2
     attackDamage: 5
     isDead: 0
   axis: {x: 0, y: 0}

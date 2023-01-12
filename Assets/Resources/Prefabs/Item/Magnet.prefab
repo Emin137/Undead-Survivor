@@ -137,3 +137,4 @@ MonoBehaviour:
   itemData:
     Type: 2
     value: 0
+  isMagnet: 0
