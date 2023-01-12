@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class Damage : MonoBehaviour
 {
-    private Text text;
+    private TMP_Text text;
     private Animator animator;
 
     private void Awake()
     {
-        text = GetComponentInChildren<Text>();
+        text = GetComponentInChildren<TMP_Text>();
         animator = GetComponentInChildren<Animator>();
     }
 
     public void SetDamage(float value,Vector2 pos)
     {
-        text.color = Color.white;
         transform.position = pos;
         text.text = value.ToString("F0");
         Invoke("SetActive", 0.8f);
@@ -25,7 +25,6 @@ public class Damage : MonoBehaviour
 
     public void SetHp(float value, Vector2 pos)
     {
-        text.color = Color.red;
         transform.position = pos;
         string str;
         if (value > 0)
