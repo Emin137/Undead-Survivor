@@ -11989,7 +11989,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 357119112}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &67581433
 BoxCollider2D:
@@ -24081,11 +24081,11 @@ MonoBehaviour:
     hp: 30
     speed: 5
     level: 1
-    maxExp: 0
+    maxExp: 50
     exp: 0
     attackDamage: 10
-    attackRange: 8
-    attackSpeed: 0.2
+    attackRange: 10
+    attackSpeed: 0.5
     isDead: 0
   effectAnimator: {fileID: 412816503}
   weaponRender: {fileID: 973515137}
@@ -24156,11 +24156,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1276603360}
+  - {fileID: 973515136}
   - {fileID: 67581432}
   - {fileID: 1365364907}
-  - {fileID: 973515136}
   - {fileID: 2061092016}
-  - {fileID: 1276603360}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24680,7 +24680,7 @@ Transform:
   m_Children:
   - {fileID: 477549094}
   m_Father: {fileID: 357119112}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &973515137
 SpriteRenderer:
@@ -24909,6 +24909,8 @@ MonoBehaviour:
   hpSlider: {fileID: 1479934736}
   expSlider: {fileID: 1302990297}
   killCount: {fileID: 1576961184}
+  level: {fileID: 1555217859}
+  imageDead: {fileID: 1179624598}
 --- !u!1 &1150757616
 GameObject:
   m_ObjectHideFlags: 0
@@ -25221,7 +25223,7 @@ RectTransform:
   m_Children:
   - {fileID: 1479934735}
   m_Father: {fileID: 357119112}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25342,7 +25344,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 890888756}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 50
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -25471,7 +25473,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 357119112}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1365364908
 SpriteRenderer:
@@ -37959,7 +37961,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage 1
+  m_Text: Phase 1
 --- !u!222 &1562807836
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38086,6 +38088,7 @@ MonoBehaviour:
   - {fileID: 957013992}
   - {fileID: 1900921551}
   enemySpawn: 0
+  spawnTime: 1
 --- !u!4 &1623858025
 Transform:
   m_ObjectHideFlags: 0
@@ -50145,7 +50148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2061092016}
   m_Layer: 0
-  m_Name: EnemyPoints
+  m_Name: SpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50171,7 +50174,7 @@ Transform:
   - {fileID: 957013992}
   - {fileID: 1900921551}
   m_Father: {fileID: 357119112}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2070460277
 GameObject:
