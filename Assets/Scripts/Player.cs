@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
             if(value>0) // 데미지를 입을때
             {
                 Damage damage =  GameManager.instance.poolManager.DamagePooling();
-                damage.InitHp(value-playerData.hp,transform.position+new Vector3(0,0.5f,0));
+                damage.InitHp(value-playerData.hp,transform.position+new Vector3(0,0.5f));
             }
             else // 플레이어 사망시
             {
@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CollisionEnemy(collision);
-        CollisionItem(collision);
+        
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -152,7 +152,12 @@ public class Player : MonoBehaviour
         CollisionEnemy(collision);
     }
 
-    private void CollisionItem(Collision2D collision) // 아이템 충돌시
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        CollisionItem(collision);
+    }
+
+    private void CollisionItem(Collider2D collision) // 아이템 충돌시
     {
         if (collision.gameObject.CompareTag("Item"))
         {
