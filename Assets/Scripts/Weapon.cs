@@ -5,8 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float rotateSpeed;
+    [System.NonSerialized]
     public SpriteRenderer render;
+    [System.NonSerialized]
     public Transform target;
+    public Transform fireTrans;
 
     private void Awake()
     {
@@ -31,6 +34,13 @@ public class Weapon : MonoBehaviour
 
         angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
-        render.flipY = offset.x < 0 ? true : false;
+        if(offset.x<0)
+        {
+            render.flipY = true;
+        }
+        else
+        {
+            render.flipY = false;
+        }
     }
 }

@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > playerData.attackSpeed && target)
         {
-            Fire();
+            StartCoroutine(Fire());
             timer = 0f;
         }
     }
@@ -239,8 +239,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Fire()
+    IEnumerator Fire()
     {
+        yield return new WaitForSeconds(0.05f);
         Bullet bullet =  GameManager.instance.poolManager.BulletPooling(0);
         bullet.transform.position = bulletSpawnTrans.position;
         bullet.SetForce((target.position - transform.position).normalized);

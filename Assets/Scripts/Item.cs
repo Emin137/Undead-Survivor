@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+
     public enum ItemType
     {
         Exp,
@@ -16,11 +17,16 @@ public class Item : MonoBehaviour
     public class ItemData
     {
         public ItemType Type;
+        public int index;
         public float value;
     }
 
     public ItemData itemData;
     public bool isMagnet;
+    private void Awake()
+    {
+    }
+
     private void Update()
     {
         if(isMagnet)
@@ -29,6 +35,4 @@ public class Item : MonoBehaviour
             transform.Translate(offset * 10 * Time.deltaTime);
         }    
     }
-
-    
 }

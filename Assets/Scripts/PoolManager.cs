@@ -75,7 +75,7 @@ public class PoolManager : MonoBehaviour
 
         foreach (var item in itemPools)
         {
-            if (!item.activeSelf)
+            if (!item.activeSelf && item.GetComponent<Item>().itemData.index == index)
             {
                 gameObject = item;
                 gameObject.SetActive(true);

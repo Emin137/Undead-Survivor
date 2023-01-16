@@ -35,8 +35,10 @@ public class SpawnManager : MonoBehaviour
 
     public void ItemSpawn()
     {
-        Item item =  GameManager.instance.poolManager.ItemPooling(Random.Range(1, 3));
-        item.transform.position = spawnPoints[Random.Range(0, 8)].position;
+        int rand = Random.Range(1, 3);
+        Item item =  GameManager.instance.poolManager.ItemPooling(rand);
+        rand = Random.Range(0, 8);
+        item.transform.position = spawnPoints[rand].position;
     }
 
 }

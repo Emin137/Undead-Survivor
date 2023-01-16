@@ -24746,8 +24746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 15
-  render: {fileID: 0}
-  target: {fileID: 0}
+  fireTrans: {fileID: 477549094}
   angle: 0
 --- !u!1 &986077797
 GameObject:
