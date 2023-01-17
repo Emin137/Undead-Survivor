@@ -24079,7 +24079,7 @@ MonoBehaviour:
   playerData:
     maxHp: 30
     hp: 30
-    speed: 5
+    speed: 6
     level: 1
     maxExp: 50
     exp: 0
