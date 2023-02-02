@@ -92,10 +92,11 @@ public class Enemy : MonoBehaviour
         {
             if (enemyData.isDead)
                 return;
-            collision.gameObject.SetActive(false);
+            if(GameManager.instance.player.playerData.weaponType != Player.PlayerData.WeaponType.Rifle)
+                collision.gameObject.SetActive(false);
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            float attackDamage = GameManager.instance.player.playerData.attackDamage;
-            StartCoroutine(DamageCoroutine(Random.Range(attackDamage-2,attackDamage+2)));
+            float attackDamage = GameManager.instance.player.playerData.weaponDamage;
+            StartCoroutine(DamageCoroutine(Random.Range(attackDamage,attackDamage+1f)));
         }
     }
 
@@ -106,7 +107,7 @@ public class Enemy : MonoBehaviour
         isDamage = true;
         animator.SetBool("isHit", isDamage);
         Damage damage = GameManager.instance.poolManager.DamagePooling();
-        damage.InitDamage(value, transform.position + new Vector3(0, 0.5f, 0));
+        damage.InitDamage(value, transform.position + new Vector3(Random.Range(-0.4f,0.4f), Random.Range(0.5f,0.8f), 0));
         
         yield return new WaitForSeconds(0.2f);
 

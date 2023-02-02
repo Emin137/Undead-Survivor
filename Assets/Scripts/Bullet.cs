@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [System.Serializable]
     public class BulletData
     {
-        public float speed=50f;
+        public float speed;
         public float attackDamage;
     }
     public BulletData bulletData;

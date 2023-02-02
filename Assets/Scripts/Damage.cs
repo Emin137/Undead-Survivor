@@ -28,7 +28,6 @@ public class Damage : MonoBehaviour
     public void InitHp(float value, Vector2 pos)
     {
         text.color = Color.red;
-        text.fontSize = 40f;
         transform.position = pos;
         string str;
         if (value > 0)

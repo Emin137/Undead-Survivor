@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
             transform.rotation = Quaternion.identity;
             render.flipX = GameManager.instance.player.axis.x < 0 ? true : false;
             render.flipY = false;
+            GameManager.instance.player.effectAnimator.Play("None");
             return;
         }
         render.flipX = false;

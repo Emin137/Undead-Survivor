@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletData:
-    speed: 30
+    speed: 50
     attackDamage: 2
   rigid: {fileID: 0}
   direction: {x: 0, y: 0}

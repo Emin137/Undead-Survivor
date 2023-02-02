@@ -13,6 +13,15 @@ public class Player : MonoBehaviour
         public int level;
         public float maxExp;
         public float exp;
+        public enum WeaponType
+        {
+            Rifle=0,
+            Handgun=1,
+            Shotgun=2
+        }
+        public WeaponType weaponType;
+        public float weaponDamage;
+        public float weaponSpeed;
         public float attackDamage;
         public float attackRange;
         public float attackSpeed;
@@ -36,9 +45,8 @@ public class Player : MonoBehaviour
                 weaponRender.gameObject.SetActive(false);
                 playerData.isDead = true;
                 rigid.bodyType = RigidbodyType2D.Static;
-                GameManager.instance.uiManager.imageDead.gameObject.SetActive(true);
-                Time.timeScale = 0f;
-                Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                GameManager.instance.uiManager.OnGameOver();
+                TimeStop(0);
             }
             if(value>playerData.maxHp) // 최대체력을 넘었을때 제한
                 value=playerData.maxHp;
@@ -58,10 +66,12 @@ public class Player : MonoBehaviour
 
             if(value>=playerData.maxExp) // 레벨업
             {
+                TimeStop(0);
                 playerData.level++;
                 playerData.exp -= playerData.maxExp;
                 playerData.maxExp *= 1.5f;
                 GameManager.instance.uiManager.SetLevel(playerData.exp,playerData.maxExp,playerData.level);
+                GameManager.instance.uiManager.OnLevelUp();
             }
         }
     }
@@ -79,6 +89,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         render = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
     }
 
     private float timer;
@@ -90,11 +101,18 @@ public class Player : MonoBehaviour
         PlayerAnimation();
         GetAxis();
         FindTarget();
+        GetKey();
         timer += Time.deltaTime;
-        if (timer > playerData.attackSpeed && target)
+        GameManager.instance.uiManager.attackSpeedSlider.value = timer;
+    }
+
+    private void LateUpdate()
+    {
+        if (timer > playerData.weaponSpeed && target)
         {
-            StartCoroutine(Fire());
+            Fire();
             timer = 0f;
+            GameManager.instance.uiManager.attackSpeedSlider.value = 0;
         }
     }
 
@@ -239,14 +257,80 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator Fire()
+    public void Fire()
     {
-        yield return new WaitForSeconds(0.05f);
-        Bullet bullet =  GameManager.instance.poolManager.BulletPooling(0);
-        bullet.transform.position = bulletSpawnTrans.position;
-        bullet.SetForce((target.position - transform.position).normalized);
-        effectAnimator.Play("FireEffect");
+        if (playerData.weaponType == PlayerData.WeaponType.Shotgun)
+        {
+            for (int i = -2; i <= 2; i++)
+            {
+                Bullet bullet = GameManager.instance.poolManager.BulletPooling(0);
+                bullet.transform.position = bulletSpawnTrans.position;
+                bullet.SetForce(((target.position - transform.position) + new Vector3(i * 0.25f, i * 0.25f)).normalized);
+                effectAnimator.Play("FireEffect");
+            }
+        }
+        else
+        {
+            Bullet bullet = GameManager.instance.poolManager.BulletPooling(0);
+            bullet.transform.position = bulletSpawnTrans.position;
+            bullet.SetForce((target.position - transform.position).normalized);
+            effectAnimator.Play("FireEffect");
+        }
     }
+        
+
+    public Sprite[] weaponSprites;
+
+    public void GetKey()
+    {
+        if(Input.GetKey(KeyCode.Z))
+        {
+            GameManager.instance.uiManager.toggles[0].isOn = true;
+        }
+        else if(Input.GetKey(KeyCode.X))
+        {
+            GameManager.instance.uiManager.toggles[1].isOn = true;
+        }
+        else if(Input.GetKey(KeyCode.C))
+        {
+            GameManager.instance.uiManager.toggles[2].isOn = true;
+        }
+        else if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        switch (playerData.weaponType)
+        {
+            case PlayerData.WeaponType.Handgun:
+                weaponRender.sprite = weaponSprites[1];
+                playerData.weaponDamage = playerData.attackDamage*0.2f;
+                playerData.weaponSpeed = playerData.attackSpeed *0.2f;
+                playerData.attackRange = 10f;
+                break;
+            case PlayerData.WeaponType.Rifle:
+                weaponRender.sprite = weaponSprites[0];
+                playerData.weaponDamage = playerData.attackDamage;
+                playerData.weaponSpeed = playerData.attackSpeed;
+                playerData.attackRange = 20f;
+                break;
+            case PlayerData.WeaponType.Shotgun:
+                weaponRender.sprite = weaponSprites[2];
+                playerData.weaponDamage = playerData.attackDamage;
+                playerData.weaponSpeed = playerData.attackSpeed * 2f;
+                playerData.attackRange = 5f;
+                break;
+        }
+        GameManager.instance.uiManager.attackSpeedSlider.maxValue = playerData.weaponSpeed;
+    }
+
+    public void TimeStop(int index)
+    {
+        Time.timeScale = index == 0 ? 0f : 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+    }
+
+    
 
    
 }

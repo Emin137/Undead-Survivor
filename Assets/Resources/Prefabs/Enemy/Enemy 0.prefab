@@ -159,8 +159,8 @@ MonoBehaviour:
   enemyData:
     maxHp: 10
     hp: 10
-    speed: 2
-    attackDamage: 5
+    speed: 3
+    attackDamage: 1
     isDead: 0
   axis: {x: 0, y: 0}
   isHit: 0
