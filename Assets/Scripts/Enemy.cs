@@ -92,10 +92,10 @@ public class Enemy : MonoBehaviour
         {
             if (enemyData.isDead)
                 return;
-            if(GameManager.instance.player.playerData.weaponType != Player.PlayerData.WeaponType.Rifle)
+            if(GameManager.instance.player.weaponIndex != 0)
                 collision.gameObject.SetActive(false);
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            float attackDamage = GameManager.instance.player.playerData.weaponDamage;
+            float attackDamage = GameManager.instance.player.weaponDatas[GameManager.instance.player.weaponIndex].weaponDamage;
             StartCoroutine(DamageCoroutine(Random.Range(attackDamage,attackDamage+1f)));
         }
     }
@@ -122,6 +122,14 @@ public class Enemy : MonoBehaviour
             isDamage = false;
             gameObject.SetActive(false);
         }
+    }
+
+    public void StageLevelUp()
+    {
+        enemyData.hp *= 1.2f;
+        enemyData.maxHp *= 1.2f;
+        enemyData.attackDamage *= 1.2f;
+        enemyData.speed *= 1.1f;
     }
 
     

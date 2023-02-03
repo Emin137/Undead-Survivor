@@ -19,7 +19,9 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator EnemySpawn()
     {
-        Enemy spawnEnemy = GameManager.instance.poolManager.EnemyPooling(Random.Range(0,2));
+        int rand = Random.Range(0, 100);
+        int index = rand < 80 ? 0 : 1;
+        Enemy spawnEnemy = GameManager.instance.poolManager.EnemyPooling(index);
         spawnEnemy.transform.position = spawnPoints[Random.Range(0, 8)].position;
         spawnEnemy.target = GameManager.instance.player.transform;
         InitEnemy(spawnEnemy);

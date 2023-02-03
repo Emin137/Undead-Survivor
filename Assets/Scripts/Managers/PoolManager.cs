@@ -22,6 +22,11 @@ public class PoolManager : MonoBehaviour
     public Transform itemSpawnTrans;
     public Transform damageTrans;
 
+    private void Start()
+    {
+        InitEnemies();
+    }
+
 
     public Enemy EnemyPooling(int index)
     {
@@ -79,6 +84,7 @@ public class PoolManager : MonoBehaviour
             {
                 gameObject = item;
                 gameObject.SetActive(true);
+                item.GetComponent<Item>().isMagnet = false;
                 break;
             }
         }
@@ -113,5 +119,19 @@ public class PoolManager : MonoBehaviour
         }
 
         return gameObject.GetComponent<Damage>();
+    }
+
+    public void InitEnemies()
+    {
+        Enemy enemy = enemyPrefabs[0].GetComponent<Enemy>();
+        enemy.enemyData.maxHp = 10f;
+        enemy.enemyData.hp = 10f;
+        enemy.enemyData.attackDamage = 1f;
+        enemy.enemyData.speed = 3f;
+        enemy = enemyPrefabs[1].GetComponent<Enemy>();
+        enemy.enemyData.maxHp = 20f;
+        enemy.enemyData.hp = 20f;
+        enemy.enemyData.attackDamage = 2f;
+        enemy.enemyData.speed = 2f;
     }
 }

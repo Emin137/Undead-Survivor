@@ -31,9 +31,9 @@ public class Damage : MonoBehaviour
         transform.position = pos;
         string str;
         if (value > 0)
-            str = $"+{value}";
+            str = $"+{(int)value}";
         else
-            str = value.ToString();
+            str = ((int)value).ToString();
         text.text = str;
         Invoke("SetActive", 0.8f);
         animator.Play("Floating");

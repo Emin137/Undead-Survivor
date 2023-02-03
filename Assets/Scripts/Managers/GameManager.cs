@@ -36,6 +36,13 @@ public class GameManager : MonoBehaviour
             {
                 spawnManager.ItemSpawn();
             }
+
+            if(value%50 == 0) // 100마리 처치시마다 스테이지 레벨업
+            {
+                stageData.stage++;
+                uiManager.stage.text = $"Stage {stageData.stage.ToString()}";
+                StageLevelUp();
+            }
         }
     }
     private void Update()
@@ -45,4 +52,15 @@ public class GameManager : MonoBehaviour
         stageData.time += Time.deltaTime;
         uiManager.SetTime((int)stageData.time);
     }
+
+    public void StageLevelUp()
+    {
+        spawnManager.spawnTime *= 0.8f;
+        for (int i = 0; i < GameManager.instance.poolManager.enemyPrefabs.Length; i++)
+        {
+            Enemy enemy = GameManager.instance.poolManager.enemyPrefabs[i].GetComponent<Enemy>();
+            enemy.StageLevelUp();
+        }
+    }
+    
 }

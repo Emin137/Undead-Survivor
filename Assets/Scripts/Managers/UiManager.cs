@@ -13,6 +13,7 @@ public class UiManager : MonoBehaviour
     public Slider attackSpeedSlider;
     public Text killCount;
     public Text level;
+    public Text stage;
     public Image imageDead;
     public Toggle[] toggles;
     public GameObject popupLevelup;
@@ -59,7 +60,7 @@ public class UiManager : MonoBehaviour
     {
         Color color = new Color(1, 1, 1, 0.2f);
         toggles[toggleIndex].image.color = toggles[toggleIndex].isOn ? Color.white : color;
-        GameManager.instance.player.playerData.weaponType = (Player.PlayerData.WeaponType)toggleIndex;
+        GameManager.instance.player.weaponIndex =  toggleIndex;
     }
 
     public void OnLevelUp()
