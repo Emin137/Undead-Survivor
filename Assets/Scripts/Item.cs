@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
     {
         public ItemType Type;
         public int index;
-        public float value;
+        public int value;
     }
 
     public ItemData itemData;

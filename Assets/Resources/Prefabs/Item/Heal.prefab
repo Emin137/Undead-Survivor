@@ -114,6 +114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData:
     Type: 1
-    index: 1
-    value: 10
+    index: 2
+    value: 2
   isMagnet: 0

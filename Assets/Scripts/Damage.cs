@@ -15,14 +15,26 @@ public class Damage : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void InitDamage(float value,Vector2 pos)
+    public void InitDamage(float value,Vector2 pos,bool crit)
     {
-        text.color = Color.white;
-        text.fontSize = 30f;
-        transform.position = pos;
-        text.text = value.ToString("F0");
-        Invoke("SetActive", 0.8f);
-        animator.Play("Floating");
+        if (crit)
+        {
+            text.color = Color.yellow;
+            text.fontSize = 40f;
+            transform.position = pos;
+            text.text = value.ToString("F0");
+            Invoke("SetActive", 0.8f);
+            animator.Play("Floating");
+        }
+        else
+        {
+            text.color = Color.white;
+            text.fontSize = 30f;
+            transform.position = pos;
+            text.text = value.ToString("F0");
+            Invoke("SetActive", 0.8f);
+            animator.Play("Floating");
+        }
     }
 
     public void InitHp(float value, Vector2 pos)

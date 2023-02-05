@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
     public enum WeaponType
     {
-        Rifle = 0,
-        Handgun = 1,
-        Shotgun = 2
+        라이플 = 0,
+        핸드건 = 1,
+        샷건 = 2
     }
 
     [System.Serializable]
@@ -18,10 +18,12 @@ public class Player : MonoBehaviour
         public float hp;
         public float speed;
         public int level;
-        public float maxExp;
-        public float exp;
+        public int maxExp;
+        public int exp;
         public float attackDamage;
         public float attackSpeed;
+        public int crit;
+        public int critdmg;
         public bool isDead = false;
         public WeaponType weaponType;
     }
@@ -34,6 +36,8 @@ public class Player : MonoBehaviour
         public float weaponDamage;
         public float weaponSpeed;
         public float weaponRange;
+        public int weaponSpecial;
+        public int level;
     }
     public WeaponData[] weaponDatas = new WeaponData[3];
 
@@ -64,7 +68,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public float EXP
+    public int EXP
     {
         get { return playerData.exp; }
         set
@@ -74,12 +78,12 @@ public class Player : MonoBehaviour
 
             if(value>=playerData.maxExp) // 레벨업
             {
-                TimeStop(0);
-                playerData.level++;
-                playerData.exp -= playerData.maxExp;
-                playerData.maxExp *= 1.5f;
+                LevelUp();
                 GameManager.instance.uiManager.SetLevel(playerData.exp,playerData.maxExp,playerData.level);
+                GameManager.instance.uiManager.InitPlayerTexts();
                 GameManager.instance.uiManager.OnLevelUp();
+                GameManager.instance.uiManager.SetHP(playerData.hp);
+                TimeStop(0);
             }
         }
     }
@@ -214,10 +218,7 @@ public class Player : MonoBehaviour
         foreach (var item in GameManager.instance.poolManager.itemPools)
         {
             Item item1 = item.GetComponent<Item>();
-            if(item1.itemData.Type != Item.ItemType.Magnet)
-            {
-                item1.isMagnet = true;
-            }
+            item1.isMagnet = true;
 
         }
     }
@@ -271,9 +272,11 @@ public class Player : MonoBehaviour
     {
         if (weaponIndex==2)
         {
-            for (int i = -2; i <= 2; i++)
+            int shotgunSpecial = weaponDatas[2].weaponSpecial / 2;
+            for (int i = shotgunSpecial*-1; i <= shotgunSpecial; i++)
             {
                 Bullet bullet = GameManager.instance.poolManager.BulletPooling(0);
+                bullet.bulletData.penetrate = 0;
                 bullet.transform.position = bulletSpawnTrans.position;
                 bullet.SetForce(((target.position - transform.position) + new Vector3(i * 0.25f, i * 0.25f)).normalized);
                 effectAnimator.Play("FireEffect");
@@ -282,6 +285,9 @@ public class Player : MonoBehaviour
         else
         {
             Bullet bullet = GameManager.instance.poolManager.BulletPooling(0);
+            bullet.bulletData.penetrate = 0;
+            if (weaponIndex == 0)
+                bullet.bulletData.penetrate = weaponDatas[0].weaponSpecial;
             bullet.transform.position = bulletSpawnTrans.position;
             bullet.SetForce((target.position - transform.position).normalized);
             effectAnimator.Play("FireEffect");
@@ -320,6 +326,22 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = index == 0 ? 0f : 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
+    }
+
+    public void LevelUp()
+    {
+        playerData.level++;
+        playerData.exp -= playerData.maxExp;
+        playerData.maxExp +=10;
+        playerData.maxHp += 2;
+        playerData.hp = playerData.maxHp;
+        if (playerData.level % 2 == 0)
+            playerData.speed++;
+        if (playerData.level % 3 == 0)
+        {
+            playerData.crit += 5;
+            playerData.critdmg += 10;
+        }
     }
 
     

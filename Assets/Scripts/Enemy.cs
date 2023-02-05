@@ -5,6 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Transform target;
+    public enum Grade
+    {
+        Unkmown,
+        Rare,
+        Boss
+    }
+        
     [System.Serializable]
     public class EnemyData
     {
@@ -13,6 +20,9 @@ public class Enemy : MonoBehaviour
         public float speed;
         public float attackDamage;
         public bool isDead;
+        public Grade grade;
+        public int index;
+        
     }
     public EnemyData enemyData;
 
@@ -28,9 +38,14 @@ public class Enemy : MonoBehaviour
                 animator.SetTrigger("isDead");
                 enemyData.isDead = true;
                 GameManager.instance.KillCount++;
-                float rand = Random.Range(0, 2); //50%
-                if (rand == 0)
+                int rand = Random.Range(0, 2); //50%
+                if (enemyData.grade == Grade.Rare)
+                    GameManager.instance.poolManager.ItemPooling(1).transform.position = transform.position;
+                else
+                {
+                    if (rand == 0)
                     GameManager.instance.poolManager.ItemPooling(0).transform.position = transform.position;
+                }
             }
         }
 
@@ -86,17 +101,30 @@ public class Enemy : MonoBehaviour
         OnDamage(collision);
     }
 
+    public bool crit;
     private void OnDamage(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             if (enemyData.isDead)
                 return;
-            if(GameManager.instance.player.weaponIndex != 0)
-                collision.gameObject.SetActive(false);
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             float attackDamage = GameManager.instance.player.weaponDatas[GameManager.instance.player.weaponIndex].weaponDamage;
-            StartCoroutine(DamageCoroutine(Random.Range(attackDamage,attackDamage+1f)));
+            crit = false;
+            int rand = Random.Range(0, 100);
+            int critInt = GameManager.instance.player.playerData.crit;
+            if (GameManager.instance.player.weaponIndex == 1)
+                critInt = critInt + GameManager.instance.player.weaponDatas[1].weaponSpecial;
+            if (critInt > rand)
+                crit = true;
+            if (crit)
+                StartCoroutine(DamageCoroutine(attackDamage * GameManager.instance.player.playerData.critdmg / 100));
+            else
+                StartCoroutine(DamageCoroutine(attackDamage));
+            if (bullet.bulletData.penetrate <= 0)
+                bullet.gameObject.SetActive(false);
+            else
+                bullet.bulletData.penetrate--;
         }
     }
 
@@ -107,8 +135,7 @@ public class Enemy : MonoBehaviour
         isDamage = true;
         animator.SetBool("isHit", isDamage);
         Damage damage = GameManager.instance.poolManager.DamagePooling();
-        damage.InitDamage(value, transform.position + new Vector3(Random.Range(-0.4f,0.4f), Random.Range(0.5f,0.8f), 0));
-        
+        damage.InitDamage(value, transform.position + new Vector3(Random.Range(-0.4f,0.4f), Random.Range(0.5f,0.8f), 0),crit);
         yield return new WaitForSeconds(0.2f);
 
         if (HP > 0)
@@ -128,7 +155,7 @@ public class Enemy : MonoBehaviour
     {
         enemyData.hp *= 1.2f;
         enemyData.maxHp *= 1.2f;
-        enemyData.attackDamage *= 1.2f;
+        enemyData.attackDamage++;
         enemyData.speed *= 1.1f;
     }
 

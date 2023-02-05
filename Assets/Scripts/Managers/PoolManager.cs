@@ -24,7 +24,16 @@ public class PoolManager : MonoBehaviour
 
     private void Start()
     {
-        InitEnemies();
+        Enemy.EnemyData enemyData = enemyPrefabs[0].GetComponent<Enemy>().enemyData;
+        enemyData.maxHp = 15f;
+        enemyData.hp = 15f;
+        enemyData.attackDamage = 1;
+        enemyData.speed = 2.5f;
+        enemyData = enemyPrefabs[1].GetComponent<Enemy>().enemyData;
+        enemyData.maxHp = 30f;
+        enemyData.hp = 30f;
+        enemyData.attackDamage = 2;
+        enemyData.speed = 1.5f;
     }
 
 
@@ -34,7 +43,7 @@ public class PoolManager : MonoBehaviour
 
         foreach (var item in enemyPools)
         {
-            if(!item.activeSelf)
+            if(!item.activeSelf && item.GetComponent<Enemy>().enemyData.index == index)
             {
                 gameObject = item;
                 gameObject.SetActive(true);
@@ -121,17 +130,5 @@ public class PoolManager : MonoBehaviour
         return gameObject.GetComponent<Damage>();
     }
 
-    public void InitEnemies()
-    {
-        Enemy enemy = enemyPrefabs[0].GetComponent<Enemy>();
-        enemy.enemyData.maxHp = 10f;
-        enemy.enemyData.hp = 10f;
-        enemy.enemyData.attackDamage = 1f;
-        enemy.enemyData.speed = 3f;
-        enemy = enemyPrefabs[1].GetComponent<Enemy>();
-        enemy.enemyData.maxHp = 20f;
-        enemy.enemyData.hp = 20f;
-        enemy.enemyData.attackDamage = 2f;
-        enemy.enemyData.speed = 2f;
-    }
+    
 }

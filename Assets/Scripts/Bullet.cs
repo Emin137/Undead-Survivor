@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     {
         public float speed;
         public float attackDamage;
+        public int penetrate;
     }
     public BulletData bulletData;
 
