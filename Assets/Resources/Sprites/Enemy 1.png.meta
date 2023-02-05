@@ -3,7 +3,7 @@ guid: 3bcb7877229a5334da528f2f0872b5c3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -62,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -142,7 +144,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 71e8e4bb43c7e9645996bb008c7aa3a1
-      internalID: -493647738
+      internalID: -2172567568482602462
       vertices: []
       indices: 
       edges: []
@@ -163,7 +165,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d932525b42506a74f853ac8ea6e6fa46
-      internalID: 1354593876
+      internalID: 1106090388572274209
       vertices: []
       indices: 
       edges: []
@@ -184,7 +186,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1c0910be5dfd49645af2d578a768ae88
-      internalID: 2018998915
+      internalID: -9016489227015596096
       vertices: []
       indices: 
       edges: []
@@ -205,7 +207,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 93a77766471a63e47b56113a4ff2c0dd
-      internalID: 66914582
+      internalID: -6705968940120925589
       vertices: []
       indices: 
       edges: []
@@ -226,7 +228,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f224379d0e1bc184b9cc06eb4fb07a87
-      internalID: 1243161592
+      internalID: 4324240041601419416
       vertices: []
       indices: 
       edges: []
@@ -247,7 +249,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6f9f2b4261b2992438ba482e8da2148e
-      internalID: -1524729577
+      internalID: 5776856478175186346
       vertices: []
       indices: 
       edges: []
@@ -268,7 +270,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1164659322e642b498043af623ba7501
-      internalID: 194153472
+      internalID: -4724292793570834122
       vertices: []
       indices: 
       edges: []
@@ -289,7 +291,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: cc5bca745a373c340b740dd1b4e3f6e3
-      internalID: -2007313318
+      internalID: -506247392341070165
       vertices: []
       indices: 
       edges: []
@@ -304,6 +306,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Run 0: -2172567568482602462
+      Run 5: 5776856478175186346
+      Run 2: -9016489227015596096
+      Run 3: -6705968940120925589
+      Hit: -4724292793570834122
+      Run 4: 4324240041601419416
+      Run 1: 1106090388572274209
+      Dead: -506247392341070165
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

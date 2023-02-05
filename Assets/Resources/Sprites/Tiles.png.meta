@@ -3,7 +3,7 @@ guid: 9ee30eb7d2f1f404790266ee96a67099
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -62,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -142,7 +144,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d9f812108496e0d4da2fe09a2360c314
-      internalID: 2093186594
+      internalID: 1200755798168784597
       vertices: []
       indices: 
       edges: []
@@ -163,7 +165,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: aa519104451eb2b4fa72798f5712fe93
-      internalID: -2031541144
+      internalID: -858993790005270922
       vertices: []
       indices: 
       edges: []
@@ -184,7 +186,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c275ace70e8c1e642944a4e5f47b1f52
-      internalID: 693853673
+      internalID: -7212324600795232778
       vertices: []
       indices: 
       edges: []
@@ -205,7 +207,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 801a3a7999d0d7347b4ee52cbce915d1
-      internalID: 179664457
+      internalID: -3565844321417373844
       vertices: []
       indices: 
       edges: []
@@ -226,7 +228,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 499b9b258a33b704fa976966c6b6b3bd
-      internalID: 1830541467
+      internalID: -2227556698708684064
       vertices: []
       indices: 
       edges: []
@@ -247,7 +249,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 021a06fb2ea20024587725277c4e262c
-      internalID: -133327340
+      internalID: -4380832969355067293
       vertices: []
       indices: 
       edges: []
@@ -262,6 +264,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tile 2: -7212324600795232778
+      Tile 3: -3565844321417373844
+      Tile 4: -2227556698708684064
+      Tile 0: 1200755798168784597
+      Tile 1: -858993790005270922
+      Tile 5: -4380832969355067293
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -3,7 +3,7 @@ guid: d33598d781682e049a53a0a13104ef29
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -62,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -142,7 +144,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 49e0d998d75f8ce4ebd09abf6bd66ffc
-      internalID: 1782705385
+      internalID: -2172567568482602462
       vertices: []
       indices: 
       edges: []
@@ -163,7 +165,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: cf4c546e2c684434e9e0390bd559b021
-      internalID: 1544975445
+      internalID: 1106090388572274209
       vertices: []
       indices: 
       edges: []
@@ -184,7 +186,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0e0341f44abdd8c43bc9d05a941f084c
-      internalID: 33490002
+      internalID: -9016489227015596096
       vertices: []
       indices: 
       edges: []
@@ -205,7 +207,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 25aa096b86708b446a57d3b7ae56aeba
-      internalID: 877188646
+      internalID: -6705968940120925589
       vertices: []
       indices: 
       edges: []
@@ -226,7 +228,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f1b10f110db351148b317f5dfa6d00d5
-      internalID: 393441404
+      internalID: 4324240041601419416
       vertices: []
       indices: 
       edges: []
@@ -247,7 +249,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8c1ff8907ace5c04481f034ee6e7fde8
-      internalID: -595425931
+      internalID: 5776856478175186346
       vertices: []
       indices: 
       edges: []
@@ -268,7 +270,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0f684ba64ddbbbb43baaa64b83e0ebdf
-      internalID: -1523209149
+      internalID: -4724292793570834122
       vertices: []
       indices: 
       edges: []
@@ -289,7 +291,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1a9272f930e58ce4680cb9db7cca1a19
-      internalID: 1253841367
+      internalID: -506247392341070165
       vertices: []
       indices: 
       edges: []
@@ -304,6 +306,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Run 0: -2172567568482602462
+      Run 5: 5776856478175186346
+      Run 2: -9016489227015596096
+      Run 3: -6705968940120925589
+      Hit: -4724292793570834122
+      Run 4: 4324240041601419416
+      Run 1: 1106090388572274209
+      Dead: -506247392341070165
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

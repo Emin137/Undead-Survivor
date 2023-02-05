@@ -3,7 +3,7 @@ guid: 0d5e657ee5a074e4baa53d5b248a01d2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -62,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -142,7 +144,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: fe848cb6984cf0548a022c05227812e9
-      internalID: 143021600
+      internalID: 1435858852259386499
       vertices: []
       indices: 
       edges: []
@@ -163,7 +165,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 03aa7ec46ababa94ea4b79b5dbe919bf
-      internalID: -1972582131
+      internalID: 8419998139806463259
       vertices: []
       indices: 
       edges: []
@@ -184,7 +186,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2c1356655813fe24d9a8738c61aafcbf
-      internalID: 1349035616
+      internalID: -5845143977627696016
       vertices: []
       indices: 
       edges: []
@@ -205,7 +207,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a5c66514b4fe03344901566a85dac876
-      internalID: -353751291
+      internalID: 5540862747873906477
       vertices: []
       indices: 
       edges: []
@@ -226,7 +228,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f6a369fad18131b46b18f789f5ed532a
-      internalID: -144335857
+      internalID: -6942218403010318565
       vertices: []
       indices: 
       edges: []
@@ -247,7 +249,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7d13921cb5b88da4a93c26ca793efdf2
-      internalID: 1772703093
+      internalID: 2053711780538816853
       vertices: []
       indices: 
       edges: []
@@ -268,7 +270,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5aa825181fcee7a419436726060b971a
-      internalID: 1737672109
+      internalID: -4926168814614620949
       vertices: []
       indices: 
       edges: []
@@ -289,7 +291,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: bca8a8641c6e3354ab75d0274abbc1e1
-      internalID: -703694536
+      internalID: -4260765312383515203
       vertices: []
       indices: 
       edges: []
@@ -310,7 +312,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b6aabc5203cefc24db52ecf0ea98f5c4
-      internalID: 762804792
+      internalID: -2707449571080671095
       vertices: []
       indices: 
       edges: []
@@ -331,7 +333,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6befcdde3e485df47821ae82f1c4a2b2
-      internalID: -537537479
+      internalID: -6253101559770865475
       vertices: []
       indices: 
       edges: []
@@ -352,7 +354,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6c2486907b334634e81ca354c6e9bb14
-      internalID: -1327499133
+      internalID: -6545775967387062560
       vertices: []
       indices: 
       edges: []
@@ -373,7 +375,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 97c7a789f60c2734eaa0870903d4a8b4
-      internalID: 1304559308
+      internalID: 3897621596536548394
       vertices: []
       indices: 
       edges: []
@@ -394,7 +396,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f0b3786c7d6806b4e95c8bfa9106f125
-      internalID: 154122315
+      internalID: 8418353011423828349
       vertices: []
       indices: 
       edges: []
@@ -415,7 +417,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a4e1b228964841144bcdc169a70818dd
-      internalID: -38345435
+      internalID: -4450187690458833534
       vertices: []
       indices: 
       edges: []
@@ -436,7 +438,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 74fc20a4abc4ea54b8692b4c6987d1c0
-      internalID: 362616440
+      internalID: -8771357822680039814
       vertices: []
       indices: 
       edges: []
@@ -457,7 +459,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: dca584bf28cc4394ab1b4968285fbd18
-      internalID: 1807624531
+      internalID: 7168720439203210846
       vertices: []
       indices: 
       edges: []
@@ -478,7 +480,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c499da979228cb7479ca05e08eef5ee4
-      internalID: -1997803578
+      internalID: -7963877697897823336
       vertices: []
       indices: 
       edges: []
@@ -499,7 +501,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d814282c489a3c140b0a29e1308a03cb
-      internalID: 1997828774
+      internalID: 4556963371876978783
       vertices: []
       indices: 
       edges: []
@@ -520,7 +522,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e058c59a9d96270428e48c18f4b31870
-      internalID: 934571490
+      internalID: 3070148713985423590
       vertices: []
       indices: 
       edges: []
@@ -535,6 +537,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Weapon 0: 1435858852259386499
+      Weapon 2: -5845143977627696016
+      Exp 0: -8771357822680039814
+      Shadow: 3897621596536548394
+      Health: 3070148713985423590
+      Bullet 0: -4926168814614620949
+      Weapon 5: 2053711780538816853
+      Bullet 5: 8418353011423828349
+      Weapon 1: 8419998139806463259
+      Weapon 3: 5540862747873906477
+      Weapon 4: -6942218403010318565
+      Bullet 3: -6253101559770865475
+      Bullet 1: -4260765312383515203
+      Box: -4450187690458833534
+      Exp 1: 7168720439203210846
+      Exp 2: -7963877697897823336
+      Mag: 4556963371876978783
+      Bullet 2: -2707449571080671095
+      Bullet 4: -6545775967387062560
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

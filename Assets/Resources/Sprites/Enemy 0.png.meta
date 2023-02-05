@@ -3,7 +3,7 @@ guid: 1bc6097228993f045852159e71f81d5b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -62,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -142,7 +144,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: fdc04699b3a4745499a7130a1b370a7e
-      internalID: 613658156
+      internalID: -2172567568482602462
       vertices: []
       indices: 
       edges: []
@@ -163,7 +165,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d472efc56b7bb3548872a39a571057b8
-      internalID: -140220566
+      internalID: 1106090388572274209
       vertices: []
       indices: 
       edges: []
@@ -184,7 +186,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f07178bf1ddce4f4bbaa4a108f29c115
-      internalID: 1611109861
+      internalID: -9016489227015596096
       vertices: []
       indices: 
       edges: []
@@ -205,7 +207,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5b4878b1cf6f4294b9cf45768ab819db
-      internalID: 1488126946
+      internalID: -6705968940120925589
       vertices: []
       indices: 
       edges: []
@@ -226,7 +228,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b2106da71adc09543b649e5e5d6505f9
-      internalID: -392852972
+      internalID: -4724292793570834122
       vertices: []
       indices: 
       edges: []
@@ -247,7 +249,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 331ce2af5a0a87a43a1b5bd5ce055bc7
-      internalID: 1261089785
+      internalID: -506247392341070165
       vertices: []
       indices: 
       edges: []
@@ -262,6 +264,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Run 0: -2172567568482602462
+      Run 2: -9016489227015596096
+      Run 3: -6705968940120925589
+      Hit: -4724292793570834122
+      Run 1: 1106090388572274209
+      Dead: -506247392341070165
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
